@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Good Hybrid Funds</title>
+    <style>
+        *{
+            font-size:15px;
+            font-weight: bold;
+        }
+        body {
+                  font-family: Arial, Helvetica, sans-serif;
+                  background-image: url("background.jpg");
+                  background-position: center; 
+                  background-repeat: no-repeat; 
+                  background-size: cover; 
+        }
+        .container {
+                       padding: 16px;
+                       margin: 0px 350px 0px 350px;
+                       background-color: rgba(0,0,0,0.7);                       
+        }
+        input[type=number] {
+                                width: 40%;
+                                padding: 15px;
+                                margin: 0px 0px 0px 0px;
+                                display: inline-block;
+                                border: 2px solid lime;
+                                border-radius: 4px;
+                                background: #f1f1f1;
+                           }
+        input[type=number]:focus {
+                                      background-color: #d9ffb3;
+                                 }
+        #finaltest-button {
+                                background-color: #00CED1;
+                                color: white;
+                                padding: 16px 20px; 
+                                border: 2px solid #008B8B;
+                                border-radius: 4px;
+                                cursor: pointer;
+                                width: 100%;                                
+                          }
+        #expense-button, #sharpe-button, #sortino-button, #alpha-button, 
+        #beta-button, #stddev-button, #rsquared-button, #netreturns-button {
+                                background-color: #F08080;
+                                color: white;
+                                padding: 15px ; 
+                                margin: 0px 0px 0px 20px;
+                                border: 2px solid #FF4500;
+                                border-radius: 4px;
+                                cursor: pointer;
+                                width: 50%;                                
+                          }        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="number" step="0.01" id="expense" />
+        <button id="expense-button" style="font-size:20px">Submit Expense Ratio</button>
+        <p id="reference1" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="sharpe" />
+        <button id="sharpe-button" style="font-size:20px">Submit Sharpe Ratio</button>
+        <p id="reference2" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="sortino" />
+        <button id="sortino-button" style="font-size:20px">Submit Sortino Ratio</button>
+        <p id="reference3" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="alpha" />
+        <button id="alpha-button" style="font-size:20px">Submit Alpha Value</button>
+        <p id="reference4" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="beta" />
+        <button id="beta-button" style="font-size:20px">Submit Beta Value</button>
+        <p id="reference5" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="stddev" />
+        <button id="stddev-button" style="font-size:20px">Submit Standard Deviation</button>
+        <p id="reference6" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="rsquared" />
+        <button id="rsquared-button" style="font-size:20px">Submit R Squared Value</button>
+        <p id="reference7" style="color: #ffffff; font-weight: normal" align="center"></p>
+    
+        <input type="number" step="0.01" id="netreturns" />
+        <button id="netreturns-button" style="font-size:20px">Submit Net Returns</button>
+        <p id="reference8" style="color: #ffffff; font-weight: normal" align="center"></p>
+       
+        <button id="finaltest-button" style="font-weight: bold; font-size:20px">FINAL TEST</button>
+        <p id="reference9" style="color: #ffffff; font-weight: bold; font-size:30px" align="center"></p>        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#expense-button").click(function(event){
+            let parameter1 = {
+                return1: $("#expense").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation1", JSON.stringify(parameter1), function(response1){
+                $("#reference1").text(response1.reference1);
+                console.log(response1);
+            });
+        });
+        
+        $("#sharpe-button").click(function(event){
+        let parameter2 = {
+                return2: $("#sharpe").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation2", JSON.stringify(parameter2), function(response2){
+                $("#reference2").text(response2.reference2);
+                console.log(response2);
+            });
+        });
+
+        $("#sortino-button").click(function(event){
+        let parameter3 = {
+                return3: $("#sortino").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation3", JSON.stringify(parameter3), function(response3){
+                $("#reference3").text(response3.reference3);
+                console.log(response3);
+            });
+        });
+        
+        $("#alpha-button").click(function(event){
+        let parameter4 = {
+                return4: $("#alpha").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation4", JSON.stringify(parameter4), function(response4){
+                $("#reference4").text(response4.reference4);
+                console.log(response4);
+            });
+        });
+
+        $("#beta-button").click(function(event){
+            let parameter5 = {
+                return5: $("#beta").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation5", JSON.stringify(parameter5), function(response5){
+                $("#reference5").text(response5.reference5);
+                console.log(response5);
+            });
+        });
+
+        $("#stddev-button").click(function(event){
+            let parameter6 = {
+                return6: $("#stddev").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation6", JSON.stringify(parameter6), function(response6){
+                $("#reference6").text(response6.reference6);
+                console.log(response6);
+            });
+        });
+        
+        $("#rsquared-button").click(function(event){
+            let parameter7 = {
+                return7: $("#rsquared").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation7", JSON.stringify(parameter7), function(response7){
+                $("#reference7").text(response7.reference7);
+                console.log(response7);
+            });
+        });
+        
+        $("#netreturns-button").click(function(event){
+            let parameter8 = {
+                return8: $("#netreturns").val()
+            }
+            $.post("http://127.0.0.1:5000/evaluation8", JSON.stringify(parameter8), function(response8){
+                $("#reference8").text(response8.reference8);
+                console.log(response8);
+            });
+        });
+        
+        $("#finaltest-button").click(function(event){
+            $.post("http://127.0.0.1:5000/evaluation9", function(finalresponse){
+                $("#reference9").text(finalresponse.reference9);
+                console.log(finalresponse);
+            });
+        });
+    </script>
+</body>
+</html>
